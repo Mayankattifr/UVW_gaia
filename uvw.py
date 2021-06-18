@@ -13,12 +13,12 @@ def uvw(ra, dec, plx, pmra, pmde, rv):
     """
     :param ra: Right Ascension in degrees
     :param dec: Declination in degrees
-    :param d: Distance in parsecs
+    :param plx: Parallax in arcseonds
     :param pmra: Proper motion in RA in milli-arcseconds/year
     :param pmde: Proper motion in Dec in milli-arcseconds/year
     :param rv: Radial velocity in km/s
 
-    :return: U, V, W in km/s
+    :return: U, V, W in km/s corrected for solar motion
 
     """
 
@@ -61,8 +61,8 @@ def uvw(ra, dec, plx, pmra, pmde, rv):
         (-A20*sina + A21*cosa) * vec2 + \
         (-A20*cosa*sind - A21*sina*sind + A22*cosd) * vec3
     u = u  # Flipping U to be positive towards Galactic center
-    #return u+11.1, (v+12.24), (w+7.25)
-    return u, (v), (w)	
+    return u+11.1, (v+12.24), (w+7.25)
+    #return u, (v), (w)	
 
 def std2(u,m):
     u=np.array(u)
